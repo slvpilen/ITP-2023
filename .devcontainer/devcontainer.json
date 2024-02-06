@@ -1,0 +1,24 @@
+{
+    "image":"adrianstoica/it1901:latest",
+    "forwardPorts": [6080,8080,5901],
+    "postStartCommand": "nohup bash -c '~/.vnc/startup  &'",
+    "customizations":{
+        "vscode": {
+            "extensions" : [
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-maven",
+                "vscjava.vscode-java-dependency",
+                "vscjava.vscode-java-test",
+                "redhat.java",
+                "yzhang.markdown-all-in-one",
+                "shd101wyy.markdown-preview-enhanced",
+                "DavidAnson.vscode-markdownlint",
+                "jebbs.plantuml",
+                "ms-vscode.live-server",
+                "vsls-contrib.codetour",
+                "ritwickdey.liveserver"
+            ]
+        }
+    }
+}

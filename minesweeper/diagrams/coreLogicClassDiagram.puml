@@ -1,0 +1,128 @@
+@startuml coreLogicClassDiagram
+
+class GameBoard {
+    # board : List<List<Tile>>
+    - width : int
+    - height : int
+    - numBombs : int
+    - startingCoords : int[]
+    - isGameLost : boolean
+    - bombTiles : List<Tile>
+    # tilesLeft : int
+    # flagsLeft : int
+    - void populateBoardWithTiles()
+    - void setStartingCoords(int, int)
+    - void placeBombs()
+    + List<Tile> getNeighborTiles(int, int)
+    + void tileClicked(int, int)
+    # void setGameboard(List<List<Tile>>)
+    # List<int[]> findBombLocations()
+    + Tile getTile(int, int)
+}
+
+class Tile {
+    - isBomb : boolean
+    - isFlagged : boolean
+    - isRevealed : boolean
+    - numBombsAround : int
+    - x : int
+    - y : int
+    + String getRevealedImagePath()
+}
+
+class Stopwatch {
+    - date : String
+    - timeWhenStarted : long
+    - endTime : int
+    - finished : boolean
+    - started : boolean
+    + void reset()
+    + void start()
+    + void stop()
+}
+
+class GameEngine {
+    - gameBoard : GameBoard
+    - stopwatch : Stopwatch
+    - latestUpdateTiles : List<TileReadable>
+    + void resetGame()
+    + void handleLeftClick(int, int)
+    + void handleRightClick(int, int)
+    + void handleSpaceBarClick(int, int)
+    - void handleBombClicked()
+}
+
+enum GameDifficulty {
+    TEST
+    EASY
+    MEDIUM
+    HARD
+    + int getGridWidth()
+    + int getGridHeight()
+    + int getNumBombs()
+    + int getStageMinWidth()
+    + int getStageMinHeight()
+    + int getSquareSize()
+}
+
+enum ThemeSettings {
+    LIGHT
+    DARK
+    + String getBackgroundStyle()
+    + String getTilePrefix()
+}
+
+class SettingsManager {
+    - gameDifficulty : GameDifficulty
+    - themeSettings : ThemeSettings
+    + void setGameDifficulty(GameDifficulty)
+    + void setThemeSettings(ThemeSetting)
+    + GameDifficulty getGameDifficulty()
+}
+
+interface TileReadable {
+    + boolean isBomb()
+    + boolean isFlagged()
+    + boolean isRevealed()
+    + boolean hasAdjacentBomb()
+    + int getX()
+    + int getY()
+    + String getRevealedImagePath()
+}
+
+class HighscoreFileManager {
+        - static final highscoreFile : File
+        + static getFile() : File
+        + static writeToHighscore(UserScore, File)
+        - static sortUserScores(List<UserScore>)
+        - static writeToFile(List<UserScore>, File)
+        + static readFromHighscore(File) : List<UserScore>
+        + static deleteFromHighscore(String, int, String)
+        + static clearHighscore(File)
+    }
+
+    class UserScore {
+        - name : String
+        - score : int
+        - date : String
+        - difficulty : String
+        + UserScore(String, int, String, String)
+        + toJson() : String
+        + toString() : String
+        + getName() : String
+        + getScore() : int
+        + getDate() : String
+        + getDifficulty() : String
+    }
+
+SettingsManager +-- GameDifficulty
+SettingsManager +-- ThemeSettings
+GameBoard --> Tile : Uses
+GameEngine --> SettingsManager : Uses
+GameEngine --> Stopwatch : Uses
+GameEngine --> GameBoard : Uses
+Tile ..|> TileReadable: Implements
+HighscoreFileManager --> UserScore: Uses
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml rest-sequence-diagram
+
+actor User
+group User checks the leaderboard
+User -> ui: clicks "Leaderboard"
+ui -> HighscoreListController: initialize()
+HighscoreListController -> RestRequest: readFromHighscore()
+RestRequest --> RESTserver: GET [getAllHighscores()]
+RESTserver --> database: read from database
+database --> RESTserver: return highscore.json
+RESTserver --> RestRequest: highscore.json
+RestRequest --> HighscoreListController: List<UserScore>
+HighscoreListController --> ui: List<UserScore> sorted
+ui --> User: 10 best userscores listed
+end 
+
+@enduml

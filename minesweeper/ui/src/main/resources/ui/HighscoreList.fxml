@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HighscoreListController">
+   <children>
+      <HBox prefHeight="45.0" prefWidth="446.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#switchToGame" prefHeight="26.0" prefWidth="70.0" text="Back">
+               <HBox.margin>
+                  <Insets left="4.0" top="9.0" />
+               </HBox.margin>
+            </Button>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard" textAlignment="CENTER" wrappingWidth="267.3366813659668">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <VBox prefHeight="34.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="difficultyLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="12.0" prefWidth="100.0" text="Easy" textAlignment="CENTER" textFill="#04cd0a">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="difficultyChoiceBox" prefHeight="15.0" prefWidth="100.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ChoiceBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutY="78.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name1" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score1" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date1" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="112.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name2" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score2" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date2" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutY="146.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name3" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score3" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date3" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutY="180.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name4" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score4" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date4" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutY="213.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name5" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score5" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date5" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutY="247.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name6" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score6" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date6" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutY="281.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name7" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score7" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date7" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutX="-1.0" layoutY="315.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name8" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score8" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date8" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutX="-1.0" layoutY="349.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9." textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name9" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score9" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date9" alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutX="-1.0" layoutY="383.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10." textAlignment="CENTER" wrappingWidth="32.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label fx:id="name10" alignment="CENTER" prefHeight="34.0" prefWidth="126.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="score10" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="158.0" text="-">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="date10" alignment="CENTER" prefHeight="34.0" prefWidth="120.0" text="-" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <Line endX="447.39996337890625" endY="1.1444091796875E-5" layoutX="-1.0" layoutY="49.0" startX="1.000006079673767" startY="1.1444091796875E-5" />
+      <HBox layoutY="45.0" prefHeight="34.0" prefWidth="446.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="24.53680419921875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="Name" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="Score" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="148.0" text="Date" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Line endX="346.4000244140625" endY="-1.52587890625E-5" layoutX="99.0" layoutY="79.0" startX="-100.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it1901</groupId>
+    <artifactId>rest</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>it1901</groupId>
+        <artifactId>minesweeper</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+
+        <!-- This module needs the jackson library. -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+
+        <!-- The starter pack for building web applications uses Tomcat as default, 
+        we are excluding the standard tomcat-starter, and instead we are 
+        using the jetty servlet container.-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!-- This dependency is causing trouble, since there are multiple
+                    versions of this dependency in the project. We are excluding it
+                    here, and adding it as a dependency instead.-->
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+
+                <!-- Excluding this dependency, since we are using the jetty servlet
+                    container instead of tomcat.-->
+                <exclusion>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+
+                <!-- We have to exclude the jackson dependencies, since we want to have
+                    the latest version of jackson. The version of jackson that comes with
+                    the springboot starter pack has known security vulnerabilities.-->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+
+            </exclusions>
+            <version>2.7.17</version>
+        </dependency>
+
+        <!-- Inserting jetty as servlet container instead of tomcat.-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <version>2.7.17</version>
+        </dependency>
+
+        <!-- This is another one of these random dependencies that is causing conflicts.
+            We are adding it as a dependency here, and excluding it in the springboot
+            testing dependency, such that we have the same version of this dependency
+            in all locations.-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+        <!-- This dependency is needed for the springboot testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            
+            <exclusions>
+                
+                <!-- This dependency is causing trouble, since there are multiple
+                versions of this dependency in the project. We are excluding it
+                here, and adding it as a dependency instead.-->
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+
+                <!-- This dependency somehow conflicts with the jetty servlet container.
+                This thing org.ow2.asm is quite random to us, but we see that we must
+                exclude it to make the tests work. Jetty container has a newer version
+                of this dependency, and it seems like the springboot test dependency
+                has an older version.-->
+                <exclusion>
+                    <artifactId>asm</artifactId>
+                    <groupId>org.ow2.asm</groupId>
+                </exclusion>
+
+                <!-- We have to exclude the junit testing dependencies, since we want to have
+                our own version of junit across all modules. Dependency conflicts will occur
+                if we don't do this.-->
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+            </exclusions>
+            
+            <version>2.7.17</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- We need the HighscoreFileManager class from the core module.-->
+        <dependency>
+            <groupId>it1901</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- This plugin makes us able to run the rest-server from the command line, using mvn spring-boot:run
+            It also makes us able to package the rest-server as a jar file, using mvn package.
+            Important part when we are making a shippable jar file.
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.17</version>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

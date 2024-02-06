@@ -1,0 +1,175 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it1901</groupId>
+    <artifactId>minesweeper</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- Specifying that we are using UTF-8 encoding,
+        and that we are using java 17.
+        This will be inherited by all of the modules in the project -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <!-- Defining all of the modules in the project -->
+    <modules>
+        <module>core</module>
+        <module>rest</module>
+        <module>ui</module>
+        <module>coverage</module>
+    </modules>
+
+    <dependencies>
+
+        <!-- junit testing with jupiter.
+        All modules need this dependency, therefore we 
+        define it in the parent pom.xml -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Configure jacoco code coverage -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <executions>
+                    
+                    <!-- Prepares the jacoco agent, so that it can be used during the tests -->
+                    <execution>
+                        <id>jacoco-prepare-agent</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Makes the jacoco report run automatically during the verify phase -->
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <!-- Maven surefire plugin, used for unit tests.-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+
+            <!-- Maven failsafe plugin, used for integration tests.-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+
+                <!-- Runs the integration tests automatically during the verify phase -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <!-- Configures the jacoco agent, so that it can be used during the integration tests -->
+                <configuration>
+                    <argLine>@{argLine} -Djacoco-agent.destfile=target/jacoco.exec</argLine>
+                    <systemPropertyVariables>
+                        <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>
+                
+            </plugin>
+
+            <!-- Configure the maven compiler, compiles java code to java bytecode -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+
+            <!-- spotbugs -->
+            <plugin>
+
+                <!-- The dependency which is used to add spotbugs into the maven lifecycle -->
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.7.3.6</version>
+
+                <!-- Adding configuration, so that spotbugs recognizes the exclude file -->
+                <configuration>
+                    <excludeFilterFile>${project.parent.basedir}/spotbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+                
+                <!-- Specifying that the goal of the plugin is to check for bugs -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <!-- Checkstyle -->
+            <plugin>
+
+                <!-- The dependency which is used to add checkstyle into the maven lifecycle -->
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.3.1</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                
+                <!-- Specifying that we are using checkstyle tool version 10.12.4 -->
+                <dependencies>
+                    <dependency>
+                        <artifactId>checkstyle</artifactId>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <version>10.12.4</version>
+                    </dependency>
+                </dependencies>
+                
+                <executions>
+
+                    <!-- Checkstyle runs automatically during the verify, install and deploy phases -->
+                    <execution>
+                        <id>checkstyle-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+
+                </executions>
+
+            </plugin>
+        </plugins>
+    </build>
+</project>

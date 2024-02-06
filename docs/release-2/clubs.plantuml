@@ -1,0 +1,33 @@
+@startuml klasseDiag
+
+package storage {
+
+    class HighscoreFileManager {
+        - static final highscoreFile : File
+        - file : File
+        + HighscoreFileManager()
+        + HighscoreFileManager(String)
+        + static getFile() : File
+        + getCustomFile() : File
+        + static writeToHighscore(UserScore, File)
+        - static writeToFile(List<UserScore>, File)
+        + static readFromHighscore(File) : List<UserScore>
+        + static clearHighscore(File)
+    }
+
+    class UserScore {
+        - name : String
+        - score : int
+        - date : String
+        + UserScore(String, int, String)
+        + toString() : String
+        + getName() : String
+        + getScore() : int
+        + getDate() : String
+    }
+
+    HighscoreFileManager --> UserScore: Uses
+
+}
+
+@enduml

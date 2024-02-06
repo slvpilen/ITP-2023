@@ -1,0 +1,13 @@
+<!-- This file is a bit ridonculous, but we need it to exclude a specific bug (which isn't really a
+bug) from the spotbugs report. 
+    In short, it is the autowiring of HighscoreService in HighscoreRestController that spotbugs doesn't
+like.
+    We are excluding this bug, because we know that the autowiring is correct. -->
+
+<FindBugsFilter>
+    <Match>
+        <Class name="~springboot\.HighscoreRestController" /> <!-- ~ marks that this is a regex, and
+        we must use \ to escape the ., which otherwise would match any character -->
+        <Bug pattern="EI_EXPOSE_REP2" /> <!-- This is the bug we are excluding -->
+    </Match>
+</FindBugsFilter>

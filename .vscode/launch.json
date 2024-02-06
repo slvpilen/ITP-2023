@@ -1,0 +1,21 @@
+{
+    
+    "configurations": [
+        {
+            "type": "java",
+            "name": "SpringApp",
+            "request": "launch",
+            "mainClass": "rest/springBoot.SpringApp",
+            "projectName": "rest",
+            "cwd": "${workspaceFolder}/minesweeper/rest"
+        },
+        {
+            "type": "java",
+            "name": "MineApp",
+            "request": "launch",
+            "mainClass": "minesweeperui/ui.MineApp",
+            "projectName": "ui",
+            "cwd": "${workspaceFolder}/minesweeper/ui"
+        }
+    ]
+}
